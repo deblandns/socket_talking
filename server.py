@@ -7,11 +7,11 @@ socketio = SocketIO(app)
 
 
 @socketio.on('message')
-async def handle_message(msg):
+def handle_message(msg):
     print('Message: ' + msg)
     send(msg, broadcast=True)
 
 
 if __name__ == '__main__':
-    print("server is running ...")
-    socketio.run(app, host='127.0.0.1', port=5000)
+    print("server is running ..")
+    socketio.run(app, host='0.0.0.0', port=5050)

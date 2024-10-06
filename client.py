@@ -9,17 +9,17 @@ def connect():
 
 
 @sio.event
-async def disconnect():
+def disconnect():
     print('Disconnected from server')
 
 
 @sio.event
-async def message(data):
+def message(data):
     print('Received message: ' + data)
 
 
 def main():
-    sio.connect('http://localhost:5000')
+    sio.connect('http://localhost:5050')
     while True:
         msg = input("Enter message: ")
         sio.send(msg)
