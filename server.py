@@ -1,13 +1,15 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, session
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required
 from flask_socketio import SocketIO, send
 from flashtext import KeywordProcessor
 from flask_cors import CORS
+from datetime import timedelta
 
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
 app.config['JWT_SECRET_KEY'] = 'Jwt_secret!'
+app.config.update(SESSION_COOKIE_SECURE=True, SESSION_COOKIE_HTTPONLY=True, SESSION_COOKIE_SAMESITE='Lax', PERMANENT_SESSION_LIFETIME=timedelta(minutes=30))
 socketio = SocketIO(app)
 jwt = JWTManager(app)
 
