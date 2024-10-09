@@ -2,12 +2,16 @@ from flask import Flask, request, jsonify
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required
 from flask_socketio import SocketIO, send
 from flashtext import KeywordProcessor
+from flask_cors import CORS
+
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
 app.config['JWT_SECRET_KEY'] = 'Jwt_secret!'
 socketio = SocketIO(app)
 jwt = JWTManager(app)
+
+CORS(app, resources={r"/*": {"origins": "http://127.0.0.1"}})
 
 keyword_processor = KeywordProcessor()
 keyword_processor.add_keyword('!', '')

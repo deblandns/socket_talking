@@ -4,7 +4,7 @@ import requests
 sio = socketio.Client()
 
 def get_jwt_token():
-    response = requests.post('http://localhost:7062/login', json={'username': 'user', 'password': 'pass'})
+    response = requests.post('http://localhost:7062/login', json={'username': 'user', 'password': 'pass'}, params={'Connection': "Upgrade", 'Upgrade': "websocket"})
     return response.json().get('access_token')
 
 @sio.event
